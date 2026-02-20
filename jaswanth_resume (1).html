@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaswanth Vummadisetty – Sr. Application Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0e17;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Floating orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 8s ease-in-out infinite;
+  }
+  .orb1 { width: 400px; height: 400px; background: var(--accent); top: -100px; right: -100px; animation-delay: 0s; }
+  .orb2 { width: 300px; height: 300px; background: var(--accent2); bottom: 200px; left: -100px; animation-delay: 3s; }
+  .orb3 { width: 200px; height: 200px; background: var(--accent3); top: 50%; left: 50%; animation-delay: 6s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
+  }
+
+  /* Layout */
+  .wrapper { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 0 4rem;
+    position: relative;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.4s forwards;
+  }
+
+  .hero-name span {
+    display: block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.6s forwards;
+  }
+
+  .hero-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.8s forwards;
+  }
+
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .contact-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .contact-pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  .hero-badge {
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1s forwards;
+  }
+
+  .years-badge {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--surface);
+  }
+
+  .years-badge::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,212,255,0.2);
+  }
+
+  .years-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .years-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* ===== SECTIONS ===== */
+  section { padding: 5rem 0; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== SUMMARY ===== */
+  .summary-text {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 800px;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+  }
+
+  /* ===== SKILLS ===== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .skill-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,212,255,0.05); }
+  .skill-card:hover::before { opacity: 1; }
+
+  .skill-category {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    padding: 0.25rem 0.65rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--text);
+  }
+
+  /* ===== EXPERIENCE ===== */
+  .timeline { position: relative; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .exp-item {
+    padding-left: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  .exp-item:nth-child(1) { animation-delay: 0.1s; }
+  .exp-item:nth-child(2) { animation-delay: 0.2s; }
+  .exp-item:nth-child(3) { animation-delay: 0.3s; }
+  .exp-item:nth-child(4) { animation-delay: 0.4s; }
+
+  .exp-dot {
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0,212,255,0.2);
+  }
+
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: border-color 0.3s;
+  }
+
+  .exp-card:hover { border-color: rgba(0,212,255,0.25); }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .exp-date {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 50px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+    color: var(--accent3);
+    margin-bottom: 1rem;
+  }
+
+  .exp-bullets { list-style: none; }
+
+  .exp-bullets li {
+    padding: 0.35rem 0;
+    padding-left: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  /* ===== EDUCATION ===== */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .edu-card:hover { border-color: rgba(124,58,237,0.4); transform: translateY(-3px); }
+
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.15), transparent);
+    transform: translate(30px, 30px);
+  }
+
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .edu-school {
+    font-size: 0.9rem;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-year {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ===== FOOTER ===== */
+  .resume-footer {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-badge { display: none; }
+    .exp-header { flex-direction: column; }
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    background: rgba(10,14,23,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<nav>
+  <div class="nav-logo">JV</div>
+  <ul class="nav-links">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrapper">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-label">Portfolio · Resume</p>
+        <h1 class="hero-name">
+          Jaswanth<span>Vummadisetty</span>
+        </h1>
+        <p class="hero-title">Sr. Application Developer – Microsoft Dynamics 365 &amp; Power Platform</p>
+        <div class="hero-contact">
+          <a href="mailto:jvummadisetty@gmail.com" class="contact-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+            jvummadisetty@gmail.com
+          </a>
+          <a href="tel:+18483138642" class="contact-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.08 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 17.92z"/></svg>
+            +1 848-313-8642
+          </a>
+          <a href="https://linkedin.com/in/jaswanth4130" target="_blank" class="contact-pill">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/jaswanth4130
+          </a>
+          <span class="contact-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Los Angeles, CA
+          </span>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="years-badge">
+          <span class="years-num">7</span>
+          <span class="years-label">Years<br>Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section id="summary">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Summary</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="summary-text reveal">
+      Dynamics CRM Developer / Power Platform Developer with 7 years of techno-functional experience across Microsoft Dynamics 365, Power Apps, Power Automate, and Dataverse. Proven ability to design and deliver scalable CRM solutions, streamline business processes, and support critical enterprise applications. Experienced in Plugins, Workflows, Business Rules, BPFs, Web Resources, and Power Automate flows — serving as a Single Point of Contact for critical customers and delivering across Sales, Marketing, Service, Field Service, and Project modules.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid reveal">
+
+      <div class="skill-card">
+        <p class="skill-category">Power Platform</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Power Apps (Canvas)</span>
+          <span class="skill-tag">Model-Driven Apps</span>
+          <span class="skill-tag">Power Automate</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Dataverse</span>
+          <span class="skill-tag">PCF Controls</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-category">CRM Customization</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Entities</span>
+          <span class="skill-tag">Workflows</span>
+          <span class="skill-tag">Business Rules</span>
+          <span class="skill-tag">BPFs</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Plugins</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-category">Integration & Cloud</p>
+        <div class="skill-tags">
+          <span class="skill-tag">REST/SOAP APIs</span>
+          <span class="skill-tag">Azure Logic Apps</span>
+          <span class="skill-tag">SharePoint Online</span>
+          <span class="skill-tag">SFTP</span>
+          <span class="skill-tag">Custom Connectors</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-category">Data & Reporting</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Data Modeling</span>
+          <span class="skill-tag">DAX</span>
+          <span class="skill-tag">Power Query</span>
+          <span class="skill-tag">SQL Server</span>
+          <span class="skill-tag">SSRS</span>
+          <span class="skill-tag">SSIS</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-category">Development</p>
+        <div class="skill-tags">
+          <span class="skill-tag">C#</span>
+          <span class="skill-tag">.NET</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">FetchXML</span>
+          <span class="skill-tag">JSON</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-category">Process & Delivery</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile/Scrum</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">UAT</span>
+          <span class="skill-tag">Production Deployment</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <h3 class="exp-role">Sr. Dynamics 365 / Power Platform Developer</h3>
+            <span class="exp-date">Jun 2024 – Present</span>
+          </div>
+          <p class="exp-company">Los Angeles County | Los Angeles, CA</p>
+          <ul class="exp-bullets">
+            <li>Developed and customized Dynamics 365 CRM apps for healthcare and public sector environments.</li>
+            <li>Built scalable solutions using Power Apps (Canvas & Model-Driven), Power Automate, and Power BI.</li>
+            <li>Designed CRM functionality using Plugins (C#), JavaScript, Business Rules, BPFs, and custom components.</li>
+            <li>Automated critical business processes through Power Automate, supporting SFTP- and API-based exchanges.</li>
+            <li>Implemented Azure-based security models with security roles, field-level restrictions, and IAM best practices.</li>
+            <li>Designed reusable Canvas Component Libraries and PCF controls for scalable Power Platform development.</li>
+            <li>Executed deployments across Dev, UAT, and Production, managing solution layering and versioning.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <h3 class="exp-role">Dynamics CRM Consultant</h3>
+            <span class="exp-date">Sep 2023 – Jun 2024</span>
+          </div>
+          <p class="exp-company">Opel Soft Technologies | Remote</p>
+          <ul class="exp-bullets">
+            <li>Designed and implemented Power Platform and Dynamics 365 solutions to improve operational efficiency.</li>
+            <li>Developed Canvas and Model-Driven Apps integrating Dataverse, SQL, and SharePoint.</li>
+            <li>Built Power BI dashboards and CRM analytical views enabling data-driven decisions.</li>
+            <li>Created SQL Server and SSIS-based data integrations ensuring high performance and reliability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <h3 class="exp-role">Dynamics CRM Functional Consultant</h3>
+            <span class="exp-date">Jul 2019 – Jun 2022</span>
+          </div>
+          <p class="exp-company">Tata Consultancy Services | Hyderabad, India</p>
+          <ul class="exp-bullets">
+            <li>Participated in full Dynamics 365 CRM implementation cycles — requirements, configuration, customization, and deployment.</li>
+            <li>Implemented Omnichannel for Customer Service across Live Chat, SMS, WhatsApp, and Voice channels.</li>
+            <li>Integrated communication channels using Twilio APIs for SMS and WhatsApp inside Dynamics 365.</li>
+            <li>Designed and deployed Power Virtual Agents (PVA) chatbots for automated customer support.</li>
+            <li>Configured CRM security using roles, teams, field-level security, and access controls.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <h3 class="exp-role">Technical Consultant</h3>
+            <span class="exp-date">Dec 2018 – Jun 2019</span>
+          </div>
+          <p class="exp-company">Skye ITS Solutions Pvt Ltd | Hyderabad, India</p>
+          <ul class="exp-bullets">
+            <li>Developed ASP.NET and C# applications integrated with Dynamics 365 CRM.</li>
+            <li>Created SQL Server stored procedures and reports for business analysis and data migration.</li>
+            <li>Collaborated with QA teams and business analysts to deliver reliable, tested solutions.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrapper">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid reveal">
+
+      <div class="edu-card">
+        <p class="edu-degree">Master of Science<br>in Computer Science</p>
+        <p class="edu-school">Sacred Heart University, Connecticut</p>
+        <p class="edu-year">Graduated Dec 2023</p>
+      </div>
+
+      <div class="edu-card">
+        <p class="edu-degree">Bachelor of Technology<br>in Computer Science &amp; Engineering</p>
+        <p class="edu-school">Vignan University, India</p>
+        <p class="edu-year">Graduated May 2018</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="resume-footer">
+  <p>Jaswanth Vummadisetty &nbsp;·&nbsp; Los Angeles, CA &nbsp;·&nbsp; jvummadisetty@gmail.com</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
